@@ -3,9 +3,8 @@ const nightmare = require('nightmare')();
 const args = process.argv.slice(2);
 const url = args[0];
 // https://www.amazon.com/dp/B071FJHNCN  Men's loose fit shorts
+// https://www.amazon.com/dp/B009418TN6  paella pan
 const minPrice = args[1];
-
-checkPrice();
 
 async function checkPrice() {
     const priceString = await nightmare
@@ -18,8 +17,12 @@ async function checkPrice() {
     const priceNumber = parseFloat(priceString.replace('$', ''));
 
     if (priceNumber < minPrice) {
+        // eslint-disable-next-line no-console
         console.log('cheap');
     } else {
+        // eslint-disable-next-line no-console
         console.log('expensive');
     }
 }
+
+checkPrice();
